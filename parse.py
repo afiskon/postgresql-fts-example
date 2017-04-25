@@ -20,9 +20,9 @@ db = postgresql.open('pq://eax@localhost:5432/eax')
 db.execute('create table if not exists ' +
   'articles(id serial primary key, title varchar(128), content text)');
 
-db.execute("create index if not exists idx_fts_articles on articles " +
-  "using gin((setweight(to_tsvector('english', title),'A') ||" +
-  "setweight(to_tsvector('english', content), 'B')))");
+#db.execute("create index if not exists idx_fts_articles on articles " +
+#  "using gin((setweight(to_tsvector('english', title),'A') ||" +
+#  "setweight(to_tsvector('english', content), 'B')))");
 
 insert = db.prepare('insert into articles (title, content) values ($1, $2)');
 
