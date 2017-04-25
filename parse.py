@@ -29,7 +29,7 @@ insert = db.prepare('insert into articles (title, content) values ($1, $2)');
 def process_page(page_xml):
     global processed_pages, insert
     doc = BeautifulSoup(f"<page>{page_xml}</page>", 'xml')
-    title = doc.page.title.string
+    title = doc.page.title.string[:127]
     content = doc.page.revision.findAll('text')[0].string
     processed_pages += 1
     print(f"Processing page {processed_pages} of {total_pages} " +
